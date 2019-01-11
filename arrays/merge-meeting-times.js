@@ -1,20 +1,22 @@
 function mergeRanges(meetings) {
-  meetings = meetings.sort()
+  meetings = meetings.sort((a, b) => {
+    return a.startTime - b.startTime;
+  });
   let firstPointer = 0;
   let secondPointer = 1;
-  while (firstPointer < meetings.length) {
-    let firstMeeting = meetings[firstPointer]
-    let nextMeeting = meetings[secondPointer]
-    
+  while (secondPointer < meetings.length) {
+    let firstMeeting = meetings[firstPointer];
+    let nextMeeting = meetings[secondPointer];
+    if (firstMeeting.endTime >= nextMeeting.startTime) {
+      firstMeeting.endTime = Math.max(firstMeeting.endTime, nextMeeting.endTime);
+      meetings.splice(secondPointer, 1);
+    } else {
+      firstPointer++;
+      secondPointer++;
+    }
   }
-}
-
-
-
-
-
-
-
+  return meetings
+};
 
 
 
