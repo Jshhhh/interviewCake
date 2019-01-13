@@ -27,7 +27,6 @@ function reverse(arrayOfChars) {
 
 
 
-
 // Tests
 
 let desc = 'empty string';
